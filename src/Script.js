@@ -1,15 +1,17 @@
 import $ from 'jquery'
 import Term from './Terminal.js';
+import Terminal from "./Terminal";
 $(function() {
   
   // Set the command-line prompt to include the user's IP Address
  // $('.prompt').html('[' + codehelper_ip["IP"] + '@HTML5] # ');
     $('.prompt').html('[gd@gd] # ');
 
+
   // Initialize a new terminal object
   new Term('#input-line .cmdline', '#container output');
   //term.init();
-  
+
   // Update the clock every second
   setInterval(function() {
     function r(cls, deg) {
@@ -23,4 +25,7 @@ $(function() {
   console.log($('#typed').length);
 });
 
-
+export function closeCurrentWindow() {
+  window.close();
+}
+export default closeCurrentWindow;

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './Script.js';
+import Script from './Script.js';
 import gerald from './assets/gerald.jpg';
 import logoTop from './assets/badge.png';
 import './App.css';
 import './Style.css';
+import {closeCurrentWindow} from "./Script";
 let date = new Date();
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
 
           <div id="container">
               <h2 className="" >Gérald DUVEAU CV</h2>
+              <button onClick={closeCurrentWindow}>Fermer</button>
           <div>
     <img className="imgTop" src={gerald} />
     <p>Le {date.toLocaleString()}</p>
