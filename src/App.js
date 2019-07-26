@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import './Script.js';
+import gerald from './assets/gerald.jpg';
+import logoTop from './assets/badge.png';
 import './App.css';
-
-const {app} = window.require('electron').remote;
+import './Style.css';
+let date = new Date();
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>React + Electron = <span role="img" aria-label="love">😍</span></h2>
-        </div>
-        <p className="App-intro">
-          <b> Release 0.2.7 </b>
-          Version: {app.getVersion()}
-        </p>
-      </div>
+
+          <div id="container">
+              <h2 className="" >Gérald DUVEAU CV</h2>
+          <div>
+    <img className="imgTop" src={gerald} />
+    <p>Le {date.toLocaleString()}</p>
+    <p>Enter "help" for more information.</p>
+</div>
+              <output></output>
+              <div id="input-line" className="input-line">
+                  <div className="prompt"></div>
+                  <div><input className="cmdline" autoFocus/></div>
+              </div>
+          </div>
+
     );
   }
 }
