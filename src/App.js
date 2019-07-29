@@ -1,37 +1,56 @@
 import React, { Component } from 'react';
-import Script from './Script.js';
 import SideBar from "./sidebar";
-import gerald from './assets/gerald.jpg';
 import './App.css';
 import './Style.css';
+
 import {closeCurrentWindow} from "./Script";
-import {getDateNow} from "./Script";
- let dateNow = getDateNow();
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.displayLogo = this.displayLogo.bind(this);
+        this.state = { path: window.location.pathname,
+            LogoList : [
+                {title : 'nodejs',
+                 src : process.env.PUBLIC_URL + "assets/nodejs.png",
+            },
+                {title : 'react',
+                    src : process.env.PUBLIC_URL +'assets/react_logo.png',
+                }, {title : 'electron',
+                    src : process.env.PUBLIC_URL +'assets/electronlogo.png',
+                }
+                ]
+
+        };
+    }
+    displayLogo = () => {
+        return this.state.LogoList.map(logo => <li><img  alt={logo.title} key={logo.title} src={logo.src} /></li>);
+
+    };
+
   render() {
+      if (this.state.path === '/') {
+          return (
+                    <div>
+                        <SideBar />
+                        <div  id="container">
+                        <button onClick={closeCurrentWindow}>Fermer</button>
+                            <div className="ContainerRootPath" >
 
-    return (
-        <div>
-            <SideBar />
-          <div id="container">
+                                <h1  >Bienvenue sur mon Curriculuml Vitae</h1>
+                                <p> Cliquer sur le menu pour voir les différentes rubriques</p>
+                                <ul className="listLogo">{ this.displayLogo()}
+                                </ul>
+                            </div>
 
-              <h2 className="titleTop" >Gérald DUVEAU CV</h2>
-              <button onClick={closeCurrentWindow}>Fermer</button>
-          <div>
-    <img alt="gérald DUVEAU" className="imgTop" src={gerald} />
-    <p>Le  {dateNow}</p>
-    <p>Enter "help" for more information.</p>
-</div>
-              <output></output>
-              <div id="input-line" className="input-line">
-                  <div className="prompt"></div>
-                  <div><input className="cmdline" autoFocus/></div>
-              </div>
-          </div>
-      </div>
-    );
+                        </div>
+                    </div>
+          );
+      }
+
   }
+
 }
 
 export default App;

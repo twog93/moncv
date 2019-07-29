@@ -121,4 +121,24 @@ table tr {
 .sec {
    stroke: #f55;
 }
-
+.ContainerRootPath {
+  margin: 100px auto;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.contactPage{
+ width: 80%;
+  margin:0 auto;
+  text-align: center;
+}
+ul li {
+  list-style:none;
+}
+.listLogo li{
+  display: inline-block;
+}
+.listLogo li img{
+max-width: 75px;
+}

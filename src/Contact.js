@@ -1,27 +1,37 @@
 import React, { Component } from 'react';
-
 import SideBar from "./sidebar";
-import gerald from './assets/gerald.jpg';
-import './App.css';
 import './Style.css';
+import {closeCurrentWindow} from "./Script";
 
 
 
 
-class App extends Component {
+class Contact extends Component {
   render() {
 
     return (
-        <div>
+        <div >
             <SideBar />
           <div id="container">
 
-              <h2 className="titleTop" >Gérald DUVEAU CV</h2>
-
+              <h2 className="titleTop" >Contact</h2>
+              <button onClick={closeCurrentWindow}>Fermer</button>
           <div>
-    <img alt="gérald DUVEAU" className="imgTop" src={gerald} />
 
-    <p>Enter "help" for more information.</p>
+              <div className="contactPage" >
+
+
+                  <h1>Informations utiles</h1>
+                  <ul>
+                      <li>Gérald DUVEAU</li>
+                      <li>16 rue Paul Véssiere 34130 Lansargues</li>
+                      <li> 06 13 06 02 37</li>
+                      <li><a href="mailto:geraldduveau@gmail.com">geraldduveau@gmail.com</a></li>
+
+                      <li><a href="http://gerald-duveau.fr">gerald-duveau.fr</a></li>
+                  </ul>
+              </div>
+
 </div>
 
 
@@ -31,4 +41,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Contact;

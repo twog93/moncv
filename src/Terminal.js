@@ -20,17 +20,26 @@ var Terminal =  function(cmdLineContainer, outputContainer) {
     var histtemp_ = 0;
 
     window.addEventListener('click', function(e) {
-        cmdLine_.focus();
+
+        if(cmdLine_){
+            cmdLine_.focus();
+        }
     }, false);
 
-    //cmdLine_.addEventListener('click', inputTextClick_, false);
-    cmdLine_.addEventListener('keydown', historyHandler_, false);
-    cmdLine_.addEventListener('keydown', processNewCommand_, false);
+    if(cmdLine_) {
+
+
+        //cmdLine_.addEventListener('click', inputTextClick_, false);
+        cmdLine_.addEventListener('keydown', historyHandler_, false);
+        cmdLine_.addEventListener('keydown', processNewCommand_, false);
+
+    }
+
 
     //
     function historyHandler_(e) {
         if (history_.length) {
-            if (e.keyCode == 38 || e.keyCode == 40) {
+            if (e.keyCode === 38 || e.keyCode === 40) {
                 if (history_[histpos_]) {
                     history_[histpos_] = this.value;
                 } else {
@@ -38,19 +47,19 @@ var Terminal =  function(cmdLineContainer, outputContainer) {
                 }
             }
 
-            if (e.keyCode == 38) { // up
+            if (e.keyCode === 38) { // up
                 histpos_--;
                 if (histpos_ < 0) {
                     histpos_ = 0;
                 }
-            } else if (e.keyCode == 40) { // down
+            } else if (e.keyCode === 40) { // down
                 histpos_++;
                 if (histpos_ > history_.length) {
                     histpos_ = history_.length;
                 }
             }
 
-            if (e.keyCode == 38 || e.keyCode == 40) {
+            if (e.keyCode === 38 || e.keyCode === 40) {
                 this.value = history_[histpos_] ? history_[histpos_] : histtemp_;
                 this.value = this.value; // Sets cursor to end of input.
             }
@@ -60,10 +69,10 @@ var Terminal =  function(cmdLineContainer, outputContainer) {
     //
     function processNewCommand_(e) {
 
-        if (e.keyCode == 9) { // tab
+        if (e.keyCode === 9) { // tab
             e.preventDefault();
             // TODO(ericbidelman): Implement tab suggest.
-        } else if (e.keyCode == 13) { // enter
+        } else if (e.keyCode === 13) { // enter
 
             // Save shell history.
             if (this.value) {
