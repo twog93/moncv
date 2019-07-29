@@ -1,12 +1,10 @@
 import $ from 'jquery'
 import Typed from 'typed.js';
+import {getDateNow} from "./Script";
 
-var util = util || {};
-util.toArray = function(list) {
-    return Array.prototype.slice.call(list || [], 0);
-};
 
-var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
+
+var Terminal =  function(cmdLineContainer, outputContainer) {
     window.URL = window.URL || window.webkitURL;
     window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 
@@ -14,9 +12,8 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
     var output_ = document.querySelector(outputContainer);
 
     const CMDS_ = [
-        'yarn','cat', 'clear', 'date', 'echo', 'help', 'uname'
+        'yarn','cat', 'clear', 'date', 'echo', 'help', 'uname', 'whoami'
     ];
-
 
     var history_ = [];
     var histpos_ = 0;
@@ -29,8 +26,6 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
     //cmdLine_.addEventListener('click', inputTextClick_, false);
     cmdLine_.addEventListener('keydown', historyHandler_, false);
     cmdLine_.addEventListener('keydown', processNewCommand_, false);
-
-    //
 
     //
     function historyHandler_(e) {
@@ -110,18 +105,24 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
                         output('<pre>' + encodedStr + '</pre>');
                     });
                     break;
+                case 'whoami' :
+                    output(  );
+                    break;
                 case 'clear':
                     output_.innerHTML = '';
                     this.value = '';
                     return;
                 case 'date':
-                    output( new Date() );
+                    output( 'Nous sommes le ' + getDateNow() );
                     break;
                 case 'echo':
                     output( args.join(' ') );
                     break;
                 case 'help':
                     output('<div class="ls-files">' + CMDS_.join('<br>') + '</div>');
+                    break;
+                case 'uname':
+                    output(navigator.appVersion);
                     break;
                 case 'yarn':
                     var typedContainer = $("#typed");
@@ -173,14 +174,6 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
                         cursorChar: "",
                     };
                     var typed7 = new Typed('#typed2',options);
-
-                    break;
-                case 'uname':
-                    output(navigator.appVersion);
-                    break;
-                case 'whoami':
-
-
                     break;
                 default:
                     if (cmd) {
@@ -195,18 +188,22 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
 
     //
     function formatColumns_(entries) {
-        let maxName = entries[0].name;
+        let util = util || {};
+        util.toArray = function(list) {
+            return Array.prototype.slice.call(list || [], 0);
+        };
+        var maxName = entries[0].name;
         util.toArray(entries).forEach(function(entry, i) {
             if (entry.name.length > maxName.length) {
                 maxName = entry.name;
             }
         });
 
-        let height = entries.length <= 3 ?
+        var height = entries.length <= 3 ?
             'height: ' + (entries.length * 15) + 'px;' : '';
 
         // 12px monospace font yields ~7px screen width.
-        let colWidth = maxName.length * 7;
+        var colWidth = maxName.length * 7;
 
         return ['<div class="ls-files" style="-webkit-column-width:',
             colWidth, 'px;', height, '">'];
@@ -214,12 +211,12 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
 
     //
     function output(html) {
-        output_.insertAdjacentHTML('beforeEnd', '<p/' + html + '>');
+        output_.insertAdjacentHTML('beforeEnd', '<p>' + html + '</p>');
     }
 
     // Cross-browser impl to get document's height.
     function getDocHeight_() {
-        let d = document;
+        var d = document;
         return Math.max(
             Math.max(d.body.scrollHeight, d.documentElement.scrollHeight),
             Math.max(d.body.offsetHeight, d.documentElement.offsetHeight),
@@ -229,7 +226,11 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
 
     //
     return {
+        initFS: function() {
+            output('<img align="left" src="http://www.w3.org/html/logo/downloads/HTML5_Badge_128.png" style="padding: 0px 10px 30px 0px"><h2>HTML5 Web Terminal</h2><p>' + new Date() + '</p><p>Enter "help" for more information.</p>');
+        },
         output: output
     }
 };
+
 export default Terminal;

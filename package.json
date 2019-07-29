@@ -9,7 +9,9 @@
     "electron-is-dev": "0.3.0",
     "electron-log": "^2.2.6",
     "jquery": "^3.4.1",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
+    "react-burger-menu": "^2.6.10",
     "react-dom": "^16.8.6",
     "typed.js": "^2.0.10",
     "update-electron-app": "^1.2.0"

@@ -1,6 +1,7 @@
 import $ from 'jquery'
 import Term from './Terminal.js';
-import Terminal from "./Terminal";
+import moment from "moment";
+import 'moment/locale/fr';
 $(function() {
   
   // Set the command-line prompt to include the user's IP Address
@@ -24,8 +25,10 @@ $(function() {
   }, 1000);
   console.log($('#typed').length);
 });
-
-export function closeCurrentWindow() {
-  window.close();
+export function getDateNow() {
+  return (moment().format('LLL'));
 }
-export default closeCurrentWindow;
+export function closeCurrentWindow() {
+ return window.close();
+}
+export default {closeCurrentWindow, getDateNow};
