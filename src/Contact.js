@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SideBar from "./sidebar";
 import './Style.css';
 import {closeCurrentWindow} from "./Script";
 
@@ -11,7 +10,6 @@ class Contact extends Component {
 
     return (
         <div >
-            <SideBar />
           <div id="container">
 
               <h2 className="titleTop" >Contact</h2>

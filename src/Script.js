@@ -23,7 +23,6 @@ $(function() {
     r("min", 6*d.getMinutes())
     r("hour", 30*(d.getHours()%12) + d.getMinutes()/2)
   }, 1000);
-  console.log($('#typed').length);
 });
 export function getDateNow() {
   return (moment().format('LLL'));

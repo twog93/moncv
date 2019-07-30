@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
+// eslint-disable-next-line
 import Script from './Script.js';
-import SideBar from "./sidebar";
 import './App.css';
 import './Style.css';
 import {closeCurrentWindow} from "./Script";
 import {getDateNow} from "./Script";
 let dateNow = getDateNow();
-
-class App extends Component {
+class Cv extends Component {
     render() {
 
         return (
             <div>
-                <SideBar />
-                <div id="container">
 
+                <div id="container">
                     <h2 className="titleTop" >Gérald DUVEAU CV</h2>
                     <button onClick={closeCurrentWindow}>Fermer</button>
                     <div>
@@ -33,4 +31,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Cv;

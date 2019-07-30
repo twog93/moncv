@@ -9,12 +9,16 @@ let mainWindow;
 
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 900, height: 680, frame: false });
+  mainWindow = new BrowserWindow({ width: 900, height: 680, frame: false,webPreferences: {
+      nodeIntegration: true
+    } });
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
+  mainWindow.openDevTools();
+  mainWindow.webContents.openDevTools();
   mainWindow.on("closed", () => (mainWindow = null));
 }
 

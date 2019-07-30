@@ -108,7 +108,7 @@ var Terminal =  function(cmdLineContainer, outputContainer) {
                         break;
                     }
                     $.get( url, function(data) {
-                        var encodedStr = data.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+                        var encodedStr = data.replace(/[\u00A0-\u9999<>]/gim, function(i) {
                             return '&#'+i.charCodeAt(0)+';';
                         });
                         output('<pre>' + encodedStr + '</pre>');
@@ -182,6 +182,7 @@ var Terminal =  function(cmdLineContainer, outputContainer) {
                         loop: true,
                         cursorChar: "",
                     };
+                    // eslint-disable-next-line
                     var typed7 = new Typed('#typed2',options);
                     break;
                 default:
@@ -196,7 +197,7 @@ var Terminal =  function(cmdLineContainer, outputContainer) {
     }
 
     //
-    function formatColumns_(entries) {
+  /*  function formatColumns_(entries) {
         let util = util || {};
         util.toArray = function(list) {
             return Array.prototype.slice.call(list || [], 0);
@@ -216,7 +217,7 @@ var Terminal =  function(cmdLineContainer, outputContainer) {
 
         return ['<div class="ls-files" style="-webkit-column-width:',
             colWidth, 'px;', height, '">'];
-    }
+    }*/
 
     //
     function output(html) {

@@ -40,7 +40,6 @@ body {
   display: -moz-box;
   -moz-box-orient: horizontal;
   -moz-box-align: stretch;
-  display: box;
   box-orient: horizontal;
   box-align: stretch;
   clear: both;
@@ -70,7 +69,6 @@ table tr {
   display: -moz-box;
   -moz-box-pack: center;
   -moz-box-orient: vertical;
-  display: box;
   box-pack: center;
   box-orient: vertical;
   -webkit-user-select: none;
